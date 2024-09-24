@@ -21,6 +21,10 @@ public class StartGameControllers : MonoBehaviour
     private bool _isStart = false;
     [SerializeField] private GameObject noLogin;
 
+    public CinemachineVirtualCamera GetCinemachineVirtualCamera()
+    {
+        return cinemachineVirtualCamera;
+    }
 
     public static StartGameControllers Instance;
 
@@ -106,6 +110,11 @@ public class StartGameControllers : MonoBehaviour
         SelectChar();
     }
 
+    private ManagerSounds Sound()
+    {
+        return ManagerSounds.Instance;
+    }
+
     public void InterGame()
     {
         _isStart = true;
@@ -117,6 +126,7 @@ public class StartGameControllers : MonoBehaviour
         {
             playerControllers[_index].SetNamePlayer(inputName.text);
         }
+        Sound().PlaySound("soundgame");
     }
 
     public void SelectChar()
