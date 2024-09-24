@@ -22,6 +22,7 @@ public class StartGameControllers : MonoBehaviour
     [SerializeField] private GameObject noLogin;
 
 
+    public static StartGameControllers Instance;
 
     public void MenuChinh()
     {
@@ -76,6 +77,7 @@ public class StartGameControllers : MonoBehaviour
         {
             _listNPC.Add(t.gameObject);
         }
+        Instance = this;
     }
 
     private void ResetNPC()
