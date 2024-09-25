@@ -9,6 +9,7 @@ public class PolyGomCollider : MonoBehaviour
             if (StartGameControllers.Instance.GetLose()) return;
             if(Question.Instance.GetListQuestion() >= 1) return;
             MainEndGame.Instance.SetDiem("100");
+            gameObject.SetActive(false);
         }
     }
 }
