@@ -18,6 +18,11 @@ public class NpcColliders : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D other)
     {
         print("va chạm với" + other.gameObject.name);
+        if (other.gameObject.CompareTag("Player"))
+        {
+            print("va chạm với player");
+            Question.Instance.VaChamNPC();
+        }
     }
 
 }

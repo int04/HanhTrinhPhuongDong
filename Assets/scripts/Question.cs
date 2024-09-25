@@ -12,21 +12,41 @@ public class Question : MonoBehaviour
     private int _correct = -1;
     public void ButtonChonDapAn(int index)
     {
+        foreach (var t in listButton)
+        {
+            t.SetActive(false);
+        }
         if (_correct != index)
         {
+            StartGameControllers.Instance.SetLose(true);
             MainEndGame.Instance.SetDiem(StartGameControllers.Instance.GetPoint().ToString());
             gameObject.SetActive(false);
         }
         else
         {
             StartGameControllers.Instance.SetPoint();
+            StartCoroutine(Win(listQuestion[index].text));
         }
+    }
+
+    private IEnumerator Win(string k)
+    {
+        textQuestion.text = "";
+        string c = "Xin chúc mừng bạn đã trả lời đúng. Hãy tiếp tục với câu hỏi tiếp theo nhé.";
+        foreach (var q in c)
+        {
+            textQuestion.text += q;
+            yield return new WaitForSeconds(0.05f);
+        }
+        yield return new WaitForSeconds(0.3f);
+        gameObject.SetActive(false);
     }
 
     [SerializeField] private TextMeshProUGUI textQuestion;
 
-    private void Awake()
+    public void VaChamNPC()
     {
+        if (StartGameControllers.Instance.GetLose()) return;
         InsertQuestion(new QuestionDenfine()
         {
             quest = "Câu hỏi 1, Câu hỏi 1, Câu hỏi 1",
@@ -41,17 +61,13 @@ public class Question : MonoBehaviour
 
     private string _stringCount = "";
     private float _timeCount = 0;
-    private void Update()
-    {
-        _timeCount += Time.deltaTime;
-        if (_timeCount >= 0.05f)
-        {
-            _timeCount = 0;
-            if (_stringCount.Length >= 1 && _stringCount.Length != textQuestion.text.Length)
-            {
-                textQuestion.text += _stringCount[textQuestion.text.Length];
-            }
 
+    private IEnumerator RunText()
+    {
+        while (_stringCount.Length >= 1 && _stringCount.Length != textQuestion.text.Length)
+        {
+            textQuestion.text += _stringCount[textQuestion.text.Length];
+            yield return new WaitForSeconds(0.05f);
         }
     }
 
@@ -113,6 +129,7 @@ public class Question : MonoBehaviour
             listQuestion[3].text = t.D;
         }
         _correct = t.indexTrue;
+        StartCoroutine(RunText());
         StartCoroutine(ShowButton(t));
     }
 }

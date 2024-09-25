@@ -24,6 +24,17 @@ public class StartGameControllers : MonoBehaviour
 
     [SerializeField] private Question question;
     private byte _point = 0;
+    private bool _lose = false;
+
+    public void SetLose(bool c)
+    {
+        _lose = c;
+    }
+
+    public bool GetLose()
+    {
+        return _lose;
+    }
 
     public byte GetPoint()
     {
@@ -157,6 +168,7 @@ public class StartGameControllers : MonoBehaviour
 
     public void InterGame()
     {
+        _lose = false;
         _point = 0;
         Sound().PlaySound("click");
         _isStart = true;
