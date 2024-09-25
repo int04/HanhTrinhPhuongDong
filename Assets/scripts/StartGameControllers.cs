@@ -117,6 +117,7 @@ public class StartGameControllers : MonoBehaviour
 
     public void InterGame()
     {
+        Sound().PlaySound("click");
         _isStart = true;
         ResetNPC();
         playerControllers[_index].gameObject.SetActive(true);
