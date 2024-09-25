@@ -49,6 +49,10 @@ public class Question : MonoBehaviour
     [SerializeField] private TextMeshProUGUI textQuestion;
 
     private List<QuestionDenfine> _listQuestion = new List<QuestionDenfine>();
+    public int GetListQuestion()
+    {
+        return _listQuestion.Count;
+    }
     public void CreateCauHoi()
     {
         _listQuestion.Clear();
