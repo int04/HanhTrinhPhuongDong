@@ -34,12 +34,14 @@ public class MainEndGame : MonoBehaviour
     {
         StartGameControllers.Instance.SetHaveCameraFromIndex();
         gameObject.SetActive(false);
+        ManagerSounds.Instance.PlaySound("click");
     }
 
     public void KetThuc()
     {
         gameObject.SetActive(false);
         StartGameControllers.Instance.MenuChinh();
+        ManagerSounds.Instance.PlaySound("click");
     }
 
     private void Update()
