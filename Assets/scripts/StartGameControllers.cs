@@ -37,6 +37,7 @@ public class StartGameControllers : MonoBehaviour
     {
         ResetNPC();
         MenuChinh();
+        Sound().PlaySound("cow");
     }
 
     private float _xMin = -6;
