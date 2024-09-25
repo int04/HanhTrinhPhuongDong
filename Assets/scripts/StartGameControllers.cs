@@ -74,6 +74,10 @@ public class StartGameControllers : MonoBehaviour
         _isStart = false;
         SetNoCamera();
         gameObject.SetActive(true);
+        foreach (var t in playerControllers)
+        {
+            t.gameObject.SetActive(false);
+        }
     }
 
     private void Start()
