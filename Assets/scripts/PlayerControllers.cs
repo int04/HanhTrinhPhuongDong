@@ -68,6 +68,12 @@ public class PlayerControllers : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (GameObject.Find("Question") || GameObject.Find("Win"))
+        {
+            rb.velocity = new Vector2(0, rb.velocity.y);
+            animator.SetInteger("move",0);
+            return;
+        }
         if (_keys["left"])
         {
             rb.velocity = new Vector2(-speed, rb.velocity.y);
