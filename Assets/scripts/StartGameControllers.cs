@@ -26,6 +26,13 @@ public class StartGameControllers : MonoBehaviour
     private byte _point = 0;
     private bool _lose = false;
 
+    [SerializeField] private GameObject joyMove;
+
+    bool isPc()
+    {
+        return Application.platform == RuntimePlatform.WindowsEditor || Application.platform == RuntimePlatform.WindowsPlayer;
+    }
+
     public void SetLose(bool c)
     {
         _lose = c;
@@ -85,6 +92,10 @@ public class StartGameControllers : MonoBehaviour
         ResetNPC();
         MenuChinh();
         Sound().PlaySound("cow");
+        if (isPc())
+        {
+            joyMove.SetActive(false);
+        }
     }
 
     private float _xMin = -6;

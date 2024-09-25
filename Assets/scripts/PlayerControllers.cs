@@ -106,16 +106,51 @@ public class PlayerControllers : MonoBehaviour
     }
 
 
+    [SerializeField]private bl_Joystick Joystick;//Joystick reference for assign in inspector
+
+    bool isPc()
+    {
+        return Application.platform == RuntimePlatform.WindowsEditor || Application.platform == RuntimePlatform.WindowsPlayer;
+    }
 
     private void Update()
     {
-        _keys["up"] = Input.GetKey(KeyCode.UpArrow);
-        _keys["down"] = Input.GetKey(KeyCode.DownArrow);
-        _keys["left"] = Input.GetKey(KeyCode.LeftArrow);
-        _keys["right"] = Input.GetKey(KeyCode.RightArrow);
-        _keys["jump"] = Input.GetKey(KeyCode.UpArrow);
+        bool z = isPc();
+        if (z)
+        {
+            _keys["up"] = Input.GetKey(KeyCode.UpArrow);
+            _keys["down"] = Input.GetKey(KeyCode.DownArrow);
+            _keys["left"] = Input.GetKey(KeyCode.LeftArrow);
+            _keys["right"] = Input.GetKey(KeyCode.RightArrow);
+            _keys["jump"] = Input.GetKey(KeyCode.UpArrow);
+            return;
+        }
 
-
+        float v = Joystick.Vertical; //get the vertical value of joystick
+        float h = Joystick.Horizontal;//get the horizontal value of joystick
+        if (v > 0)
+        {
+            _keys["jump"] = true;
+        }
+        else if (v < 0)
+        {
+            _keys["jump"] = false;
+        }
+        if (h > 0)
+        {
+            _keys["right"] = true;
+            _keys["left"] = false;
+        }
+        else if (h < 0)
+        {
+            _keys["left"] = true;
+            _keys["right"] = false;
+        }
+        else if(h == 0)
+        {
+            _keys["left"] = false;
+            _keys["right"] = false;
+        }
 
     }
 
