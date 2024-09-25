@@ -116,15 +116,47 @@ public class PlayerControllers : MonoBehaviour
     private void Update()
     {
         bool z = isPc();
-        if (z)
+
+        if (Input.GetKeyDown(KeyCode.RightArrow))
         {
-            _keys["up"] = Input.GetKey(KeyCode.UpArrow);
-            _keys["down"] = Input.GetKey(KeyCode.DownArrow);
-            _keys["left"] = Input.GetKey(KeyCode.LeftArrow);
-            _keys["right"] = Input.GetKey(KeyCode.RightArrow);
-            _keys["jump"] = Input.GetKey(KeyCode.UpArrow);
+            _keys["right"] = true;
             return;
         }
+        else if (Input.GetKeyUp(KeyCode.RightArrow))
+        {
+            _keys["right"] = false;
+            return;
+        }
+
+        if (Input.GetKeyDown(KeyCode.LeftArrow))
+        {
+            _keys["left"] = true;
+            return;
+        }
+        else if (Input.GetKeyUp(KeyCode.LeftArrow))
+        {
+            _keys["left"] = false;
+            return;
+        }
+
+        if (Input.GetKeyDown(KeyCode.UpArrow))
+        {
+            _keys["jump"] = true;
+            return;
+        }
+        else if (Input.GetKeyUp(KeyCode.UpArrow))
+        {
+            _keys["jump"] = false;
+            return;
+        }
+
+        if(Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.UpArrow))
+        {
+            return;
+        }
+
+
+        if (Joystick.gameObject.activeSelf == false) return;
 
         float v = Joystick.Vertical; //get the vertical value of joystick
         float h = Joystick.Horizontal;//get the horizontal value of joystick
