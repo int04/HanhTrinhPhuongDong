@@ -20,6 +20,13 @@ public class StartGameControllers : MonoBehaviour
     [SerializeField] private TMP_InputField inputName;
     private bool _isStart = false;
     [SerializeField] private GameObject noLogin;
+    [SerializeField] private MainEndGame mainEndGame;
+
+    public string GetNamePlayer()
+    {
+        if (inputName.text.Length <= 0) return "SV PDU";
+        return inputName.text;
+    }
 
     public CinemachineVirtualCamera GetCinemachineVirtualCamera()
     {
@@ -28,9 +35,20 @@ public class StartGameControllers : MonoBehaviour
 
     public static StartGameControllers Instance;
 
-    public void MenuChinh()
+    public void SetNoCamera()
     {
         cinemachineVirtualCamera.Follow = noLogin.transform;
+    }
+
+    public void SetHaveCameraFromIndex()
+    {
+        cinemachineVirtualCamera.Follow = playerControllers[_index].transform;
+    }
+
+    public void MenuChinh()
+    {
+        SetNoCamera();
+        gameObject.SetActive(true);
     }
 
     private void Start()
@@ -50,7 +68,8 @@ public class StartGameControllers : MonoBehaviour
     }
 
     private bool _moveRight = true;
-    private void Update()
+
+    public void MoveUpdateForm()
     {
         if (_isStart) return;
 
@@ -75,6 +94,10 @@ public class StartGameControllers : MonoBehaviour
             _moveRight = true;
         }
     }
+    private void Update()
+    {
+        MoveUpdateForm();
+    }
 
     private void Awake()
     {
@@ -83,6 +106,7 @@ public class StartGameControllers : MonoBehaviour
             _listNPC.Add(t.gameObject);
         }
         Instance = this;
+        MainEndGame.Instance = mainEndGame;
     }
 
     private void ResetNPC()
