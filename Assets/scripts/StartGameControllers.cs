@@ -175,6 +175,7 @@ public class StartGameControllers : MonoBehaviour
         _lose = false;
         _point = 0;
         Sound().PlaySound("click");
+        Question.Instance.CreateCauHoi();
         _isStart = true;
         ResetNPC();
         playerControllers[_index].gameObject.SetActive(true);

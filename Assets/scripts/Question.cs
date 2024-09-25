@@ -40,24 +40,43 @@ public class Question : MonoBehaviour
         }
         yield return new WaitForSeconds(0.3f);
         gameObject.SetActive(false);
+        if (_listQuestion.Count <= 0)
+        {
+            MainEndGame.Instance.SetDiem(StartGameControllers.Instance.GetPoint().ToString());
+        }
     }
 
     [SerializeField] private TextMeshProUGUI textQuestion;
 
+    private List<QuestionDenfine> _listQuestion = new List<QuestionDenfine>();
+    public void CreateCauHoi()
+    {
+        _listQuestion.Clear();
+        for (int i = 0; i < 7; i++)
+        {
+            _listQuestion.Add(new QuestionDenfine()
+            {
+                quest = "Câu hỏi "+i+", Câu hỏi 1, Câu hỏi 1",
+                A = "A",
+                B = "B",
+                C = "C",
+                D = "D",
+                indexTrue = 1,
+                type = 0
+            });
+        }
+    }
     public void VaChamNPC(GameObject k = null)
     {
         if (StartGameControllers.Instance.GetLose()) return;
-        gameObject.SetActive(true);
-        InsertQuestion(new QuestionDenfine()
+        if (_listQuestion.Count <= 0)
         {
-            quest = "Câu hỏi 1, Câu hỏi 1, Câu hỏi 1",
-            A = "A",
-            B = "B",
-            C = "C",
-            D = "D",
-            indexTrue = 1,
-            type = 0
-        });
+            return;
+        }
+        InsertQuestion(_listQuestion[0]);
+        _listQuestion.RemoveAt(0);
+        gameObject.SetActive(true);
+
         if (k != null)
         {
             k.SetActive(false);
