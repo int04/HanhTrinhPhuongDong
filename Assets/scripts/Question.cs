@@ -44,9 +44,10 @@ public class Question : MonoBehaviour
 
     [SerializeField] private TextMeshProUGUI textQuestion;
 
-    public void VaChamNPC()
+    public void VaChamNPC(GameObject k = null)
     {
         if (StartGameControllers.Instance.GetLose()) return;
+        gameObject.SetActive(true);
         InsertQuestion(new QuestionDenfine()
         {
             quest = "Câu hỏi 1, Câu hỏi 1, Câu hỏi 1",
@@ -57,6 +58,10 @@ public class Question : MonoBehaviour
             indexTrue = 1,
             type = 0
         });
+        if (k != null)
+        {
+            k.SetActive(false);
+        }
     }
 
     private string _stringCount = "";
