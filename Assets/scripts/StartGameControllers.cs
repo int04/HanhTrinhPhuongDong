@@ -22,6 +22,19 @@ public class StartGameControllers : MonoBehaviour
     [SerializeField] private GameObject noLogin;
     [SerializeField] private MainEndGame mainEndGame;
 
+    [SerializeField] private Question question;
+    private byte _point = 0;
+
+    public byte GetPoint()
+    {
+        return _point;
+    }
+
+    public void SetPoint(byte point = 1)
+    {
+        _point += point;
+    }
+
     public string GetNamePlayer()
     {
         if (inputName.text.Length <= 0) return "SV PDU";
@@ -47,6 +60,7 @@ public class StartGameControllers : MonoBehaviour
 
     public void MenuChinh()
     {
+        _isStart = false;
         SetNoCamera();
         gameObject.SetActive(true);
     }
@@ -107,6 +121,7 @@ public class StartGameControllers : MonoBehaviour
         }
         Instance = this;
         MainEndGame.Instance = mainEndGame;
+        Question.Instance = question;
     }
 
     private void ResetNPC()
@@ -142,6 +157,7 @@ public class StartGameControllers : MonoBehaviour
 
     public void InterGame()
     {
+        _point = 0;
         Sound().PlaySound("click");
         _isStart = true;
         ResetNPC();

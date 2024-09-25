@@ -18,6 +18,7 @@ public class MainEndGame : MonoBehaviour
 
     public void SetDiem(string m)
     {
+        gameObject.SetActive(true);
         var q = _oldText;
         q = q.Replace("{0}", StartGameControllers.Instance.GetNamePlayer());
         text.text = q;
