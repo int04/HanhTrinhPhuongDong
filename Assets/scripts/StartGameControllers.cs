@@ -132,6 +132,20 @@ public class StartGameControllers : MonoBehaviour
 
     public void SelectChar()
     {
+        Sound().PlaySound("soundgame");
+        if (_index == 0)
+        {
+            Sound().PlaySound("cow");
+        }
+        else if (_index == 1)
+        {
+            Sound().PlaySound("pig");
+        }
+        else
+        {
+            Sound().PlaySound("shark");
+        }
+
         if (_index >= gameObPlayer.Count)
         {
             _index = 0;
