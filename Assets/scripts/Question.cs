@@ -73,10 +73,9 @@ public class Question : MonoBehaviour
         {
             return;
         }
+        gameObject.SetActive(true);
         InsertQuestion(_listQuestion[0]);
         _listQuestion.RemoveAt(0);
-        gameObject.SetActive(true);
-
         if (k != null)
         {
             k.SetActive(false);
