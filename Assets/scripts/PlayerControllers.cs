@@ -96,11 +96,13 @@ public class PlayerControllers : MonoBehaviour
         {
             _jumpUp = true;
             rb.velocity = new Vector2(rb.velocity.x, speedJump);
+            _keys["jump"] = false;
         }
         else if (_keys["jump"] && rb.velocity.y <= 0 && _jumpUp == true)
         {
             _jumpUp = false;
             rb.velocity = new Vector2(rb.velocity.x, 0);
+            _keys["jump"] = false;
         }
 
     }
