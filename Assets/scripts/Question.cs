@@ -56,19 +56,7 @@ public class Question : MonoBehaviour
     public void CreateCauHoi()
     {
         _listQuestion.Clear();
-        for (int i = 0; i < 7; i++)
-        {
-            _listQuestion.Add(new QuestionDenfine()
-            {
-                quest = "Câu hỏi "+i+", Câu hỏi 1, Câu hỏi 1",
-                A = "A",
-                B = "B",
-                C = "C",
-                D = "D",
-                indexTrue = 1,
-                type = 0
-            });
-        }
+        _listQuestion = DefineQuestion.GetQuestion();
     }
     public void VaChamNPC(GameObject k = null)
     {

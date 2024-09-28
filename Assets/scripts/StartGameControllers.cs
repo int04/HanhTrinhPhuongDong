@@ -89,6 +89,7 @@ public class StartGameControllers : MonoBehaviour
 
     private void Start()
     {
+        DefineQuestion.Run();
         ResetNPC();
         MenuChinh();
         Sound().PlaySound("cow");
