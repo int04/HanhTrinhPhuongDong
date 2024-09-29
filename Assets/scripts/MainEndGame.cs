@@ -38,6 +38,12 @@ public class MainEndGame : MonoBehaviour
         ManagerSounds.Instance.PlaySound("click");
     }
 
+    public void ChoiLai()
+    {
+        KetThuc();
+        StartGameControllers.Instance.InterGame();
+    }
+
     public void KetThuc()
     {
         gameObject.SetActive(false);
